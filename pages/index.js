@@ -1,9 +1,6 @@
 import { useEffect, useState } from "react";
-import Image from "next/image";
 import cx from "classnames";
 import styles from "../styles/app.module.css";
-
-const API_KEY = "bdecce71774dcdd158c44f4096aa85bd";
 
 export default function App() {
   const [day, setDay] = useState(0);
@@ -14,18 +11,18 @@ export default function App() {
   });
 
   useEffect(() => {
-    navigator.geolocation.getCurrentPosition((position) => {
+    navigator.geolocation.getCurrentPosition(({ coords }) => {
       setLocation({
-        lat: position.coords.latitude,
-        lon: position.coords.longitude,
+        lat: coords.latitude,
+        lon: coords.longitude,
       });
     });
   }, []);
 
   useEffect(async () => {
-    const { daily, current, timezone } = await fetch(
-      `https://api.openweathermap.org/data/2.5/onecall?lat=${location.lat}&lon=${location.lon}&appid=${API_KEY}`
-    ).then((res) => res.json());
+    const { daily, current, timezone } = await fetch("/api/weather").then(
+      (res) => res.json()
+    );
 
     setData({
       daily,
@@ -62,7 +59,7 @@ export default function App() {
         <div className={styles.location}>{data.location}</div>
         <div className={styles.wrapper}>
           <div className={styles.icon}>
-            <Image
+            <img
               width={50}
               height={50}
               src={`https://openweathermap.org/img/wn/${icon}@2x.png`}
@@ -82,8 +79,7 @@ export default function App() {
           >
             <div className={styles.item}>{item.date}</div>
             <div className={styles.item}>
-              {" "}
-              <Image
+              <img
                 width={50}
                 height={50}
                 src={`https://openweathermap.org/img/wn/${item.icon}@2x.png`}
