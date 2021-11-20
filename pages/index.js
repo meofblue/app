@@ -70,7 +70,7 @@ export default function App() {
           </div>
           {day === 0 && <div className={styles.current}>{data.current}°</div>}
         </div>
-        <div className={styles.range}>{range.join("/")}</div>
+        <div className={styles.range}>{range.join(" / ")}</div>
         <div className={styles.description}>{description}</div>
       </div>
       <div className={styles.week}>
@@ -90,7 +90,7 @@ export default function App() {
               />
             </div>
             <div className={styles.item}>{item.weather}</div>
-            <div className={styles.item}>{item.range.join("/")}</div>
+            <div className={styles.item}>{item.range.join(" / ")}</div>
           </div>
         ))}
       </div>
