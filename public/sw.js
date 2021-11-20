@@ -1,4 +1,4 @@
-var VERSION = "v1";
+var VERSION = "weatcher-v1";
 
 // 缓存
 self.addEventListener("install", function (event) {
