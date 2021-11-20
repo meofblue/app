@@ -31,7 +31,7 @@ export default function App() {
     });
   }, [location]);
 
-  if (!data) return <div>loading</div>;
+  if (!data) return <div className={styles.loading}>Weather</div>;
 
   const { daily } = data;
   const range = [

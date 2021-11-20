@@ -1,3 +1,17 @@
+.loading {
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: burlywood;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #333;
+  font-size: 36px;
+}
+
 .app {
   display: flex;
   flex-direction: column;
@@ -51,6 +65,7 @@
   max-width: 100vw;
   overflow: auto;
   margin-top: 20px;
+  padding-left: 10px;
 }
 
 .day {
