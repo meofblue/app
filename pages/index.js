@@ -28,7 +28,7 @@ export default function App() {
 
     setData({
       daily,
-      current: current.temp,
+      current: parseInt(current.temp - 273.15),
       location: timezone,
     });
   }, [location]);
@@ -36,17 +36,22 @@ export default function App() {
   if (!data) return <div>loading</div>;
 
   const { daily } = data;
-  const range = [daily[day].temp.max, daily[day].temp.min];
+  const range = [
+    `${parseInt(daily[day].temp.max - 273.15)}°`,
+    `${parseInt(daily[day].temp.min - 273.15)}°`,
+  ];
   const description = daily[day].weather[0].description;
   const icon = daily[day].weather[0].icon;
   const items = daily.map((item) => {
     const date = new Date(item.dt * 1000);
-
     return {
       date: `${date.getMonth() + 1} / ${date.getDate()}`,
       weather: item.weather[0].main,
       icon: item.weather[0].icon,
-      range: [item.temp.max.toFixed(0), item.temp.min.toFixed(0)],
+      range: [
+        `${parseInt(item.temp.max - 273.15)}°`,
+        `${parseInt(item.temp.min - 273.15)}°`,
+      ],
     };
   });
 
@@ -62,7 +67,7 @@ export default function App() {
               src={`https://openweathermap.org/img/wn/${icon}@2x.png`}
             />
           </div>
-          {day === 0 && <div className={styles.current}>{data.current}</div>}
+          {day === 0 && <div className={styles.current}>{data.current}°</div>}
         </div>
         <div className={styles.range}>{range.join("/")}</div>
         <div className={styles.description}>{description}</div>
