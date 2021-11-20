@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
+import cx from "classnames";
 import styles from "../styles/app.module.css";
 
 const API_KEY = "bdecce71774dcdd158c44f4096aa85bd";
@@ -77,7 +78,7 @@ export default function App() {
           <div
             key={item.date}
             onClick={() => setDay(index)}
-            className={styles.day}
+            className={cx(styles.day, { [styles.active]: index === day })}
           >
             <div className={styles.item}>{item.date}</div>
             <div className={styles.item}>
