@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import styles from "../styles/app.module.css";
 
 const API_KEY = "bdecce71774dcdd158c44f4096aa85bd";
@@ -54,7 +55,13 @@ export default function App() {
       <div className={styles.card}>
         <div className={styles.location}>{data.location}</div>
         <div className={styles.wrapper}>
-          <div className={styles.icon}></div>
+          <div className={styles.icon}>
+            <Image
+              width={50}
+              height={50}
+              src={`https://openweathermap.org/img/wn/${icon}@2x.png`}
+            />
+          </div>
           {day === 0 && <div className={styles.current}>{data.current}</div>}
         </div>
         <div className={styles.range}>{range.join("/")}</div>
@@ -68,7 +75,14 @@ export default function App() {
             className={styles.day}
           >
             <div className={styles.item}>{item.date}</div>
-            <div className={styles.item}>{item.icon}</div>
+            <div className={styles.item}>
+              {" "}
+              <Image
+                width={50}
+                height={50}
+                src={`https://openweathermap.org/img/wn/${item.icon}@2x.png`}
+              />
+            </div>
             <div className={styles.item}>{item.weather}</div>
             <div className={styles.item}>{item.range.join("/")}</div>
           </div>

@@ -27,14 +27,13 @@
 }
 
 .icon {
-  width: 100px;
   height: 56px;
   margin-right: 10px;
-  background: #666;
 }
 
 .current {
   font-size: 48px;
+  line-height: 1;
 }
 
 .range {
@@ -54,7 +53,7 @@
   flex-direction: column;
   align-items: center;
   margin-right: 10px;
-  background: #eee;
+  border: 1px solid #999;
   padding: 5px;
 }
 
