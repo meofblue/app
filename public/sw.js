@@ -27,6 +27,7 @@ self.addEventListener("activate", function (event) {
 
 // 捕获请求并返回缓存数据
 self.addEventListener("fetch", function (event) {
+  console.log(event.request.url);
   event.respondWith(
     caches.match(event.request).then(function (response) {
       if (response !== undefined) {
